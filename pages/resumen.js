@@ -4,10 +4,12 @@ import Image from "next/image";
 import FormNom from "../components/FormNom";
 import NoPedido from "../components/NoPedido";
 import useRestaurant from "../hooks/useRestaurant";
+import { useRouter } from 'next/router';
 
 const Resumen = () => {
 
     const {pedido, handleEliminarProPedido, autorizado} = useRestaurant();
+    const navigate = useRouter();
 
     return (  
         <div>
