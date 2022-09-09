@@ -16,6 +16,7 @@ const Ordenes = () => {
                             key={ped.id}
                         >
                             {ped.fecha}
+                            {ped.nombre}
                         </div>
                     ))}
                 </>
