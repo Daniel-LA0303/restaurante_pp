@@ -1,15 +1,42 @@
-import React from 'react'
+import React, {useState} from 'react'
 import { useRouter } from 'next/router';
+import useRestaurant from '../hooks/useRestaurant';
 
 const Login = () => {
 
+    const {setAutorizado} = useRestaurant();
+
+    const[inicio, setInicio] = useState({
+        usuario: '',
+        password: ''
+    });
+    const {usuario, password} = inicio;
     const navigate = useRouter();
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        // console.log('submit');
-        navigate.push('/menu')
+        if([usuario, password].includes('')){
+            alert('Es necesario llenar los dos campos');
+            return;
+        }
+        if(usuario === 'admin' && password === 'admin'){
+            // console.log('eres el admin, log acptado');
+            setAutorizado(true);
+            navigate.push('/menu');
+        }else{
+            alert('El usuario o la contraseña son necesarios')
+        }
 
+        // console.log('submit');
+
+
+    }   
+
+    const handleChange = (e) => {
+        setInicio({
+            ...inicio,
+            [e.target.name] : e.target.value
+        })
     }
 
     return (  
@@ -26,6 +53,9 @@ const Login = () => {
                             className='input-form h-10 mb-5  rounded-sm'
                             type="text"
                             placeholder='Usuario'
+                            value={usuario}
+                            name='usuario'
+                            onChange={handleChange}
                         />
                     </div>
 
@@ -37,6 +67,9 @@ const Login = () => {
                             className='input-form h-10 mb-5  rounded-sm'
                             type="password"
                             placeholder='Password'
+                            value={password}
+                            name='password'
+                            onChange={handleChange}
                         />
                     </div>
 

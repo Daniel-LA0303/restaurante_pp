@@ -3,18 +3,26 @@ import useRestaurant from "../hooks/useRestaurant";
 
 const Ordenes = () => {
 
-    const {pedidos} = useRestaurant();
+    const {pedidos, autorizado} = useRestaurant();
     
     return (  
         <div>
-            <Header  pag={'Ordenes'}/>
-            {pedidos.map(ped => (
-                <div
-                    key={ped.id}
-                >
-                    {ped.fecha}
-                </div>
-            ))}
+            
+            {autorizado ? (
+                <>
+                    <Header  pag={'Ordenes'}/>
+                    {pedidos.map(ped => (
+                        <div
+                            key={ped.id}
+                        >
+                            {ped.fecha}
+                        </div>
+                    ))}
+                </>
+            ):(
+                <p>Usted no tiene los permisos para esta información</p>
+            )}
+
         </div>
     );
 }

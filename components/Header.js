@@ -56,7 +56,7 @@ const Header = ({pag}) => {
                         <Link 
                             href={`/${pagSig}`}
                         >
-                            <a className='block  py-1 px-2 w-auto text-white font-bold text-center mx-2 my-1'>{pedido.length>0 ? 'Siguiente' : 'Nueva Orden'}</a>
+                            <a className='block  py-1 px-2 w-auto text-white font-bold text-center mx-2 my-1'>Siguiente</a>
                         </Link>
                     </div>
                     

@@ -8,27 +8,27 @@ import useRestaurant from "../hooks/useRestaurant";
 
 const Productos = () => {
 
-    const {productosActual} = useRestaurant();
-
-
-    
+    const {productosActual, autorizado} = useRestaurant();
 
     return (  
         <div>
-            
-            <Header  pag={'Productos'}/>
-            
-            {/* <h1 className=" text-center my-5 text-5xl">Products</h1> */}
-            <NavIcons />
-            <div className="flex flex-wrap justify-evenly">
-                {productosActual.map(producto => (
-                    <Producto 
-                        key={producto.id}
-                        producto={producto}
-                    />
-                ))}
-            </div>
-
+           
+            {autorizado ? (
+                <>
+                    <Header  pag={'Productos'}/>  
+                    <NavIcons />
+                    <div className="flex flex-wrap justify-evenly">
+                        {productosActual.map(producto => (
+                            <Producto 
+                                key={producto.id}
+                                producto={producto}
+                            />
+                        ))}
+                    </div>
+                </>
+            ): (
+                <p>Usted no tiene los permisos para esta información</p>
+            )}
         </div>
     );
 }
