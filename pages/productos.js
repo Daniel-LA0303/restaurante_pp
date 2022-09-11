@@ -4,11 +4,14 @@ import Header from "../components/Header";
 import Producto from "../components/Producto";
 import NavIcons from "../components/NavIcons";
 import useRestaurant from "../hooks/useRestaurant";
+import Custom404 from './404';
 
 
 const Productos = () => {
 
     const {productosActual, autorizado} = useRestaurant();
+
+    let error = <Custom404 />
 
     return (  
         <div>
@@ -27,7 +30,7 @@ const Productos = () => {
                     </div>
                 </>
             ): (
-                <p>Usted no tiene los permisos para esta información</p>
+                <Custom404 />
             )}
         </div>
     );

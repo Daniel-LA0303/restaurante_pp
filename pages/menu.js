@@ -1,10 +1,13 @@
 import Link from "next/link";
 import Header from "../components/Header";
 import useRestaurant from "../hooks/useRestaurant";
+import Custom404 from "./404";
 
 const Menu = () => {
 
     const{autorizado} = useRestaurant();
+
+    let error = <Custom404 />
 
     return (  
         <div>
@@ -14,7 +17,7 @@ const Menu = () => {
                     Menu y precios
                 </>
             ): (
-                <p>Usted no tiene los permisos para esta información</p>
+                <Custom404 />
             )}
 
 

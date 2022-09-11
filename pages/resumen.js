@@ -3,6 +3,7 @@ import Header from "../components/Header";
 import Image from "next/image";
 import FormNom from "../components/FormNom";
 import NoPedido from "../components/NoPedido";
+import Custom404 from "./404";
 import useRestaurant from "../hooks/useRestaurant";
 import { useRouter } from 'next/router';
 
@@ -11,12 +12,13 @@ const Resumen = () => {
     const {pedido, handleEliminarProPedido, autorizado} = useRestaurant();
     const navigate = useRouter();
 
+    let error = <Custom404 />
+
     return (  
         <div>
-            <Header  pag={'Resumen'}/>
             {autorizado ? (
                 <>
-                    
+                    <Header  pag={'Resumen'}/>
                     <p className=" text-center text-5xl">Resumen</p>
                     {pedido.length>0 ? (
                     <>
@@ -70,7 +72,7 @@ const Resumen = () => {
                 ) : <NoPedido />}
                     </>
             ): (
-                <p>Usted no tiene los permisos para esta información</p>
+                <>{error}</>
             )}
            
             
